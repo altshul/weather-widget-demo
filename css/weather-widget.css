@@ -6,7 +6,7 @@
     -moz-box-shadow: 7px 7px 4px 2px #555555;
     box-shadow: 7px 7px 4px 2px #555555;
     display: none;
-    font-family: Verdana, Arial, sans-serif;
+    font-family: 'Roboto', arial, sans-serif;
     height: 160px;
     position: relative;
     width: 310px;
@@ -16,31 +16,40 @@
 #weather-widget-wrapper .weather-widget-top,
 #weather-widget-wrapper .weather-widget-middle,
 #weather-widget-wrapper .weather-widget-bottom {
-    float: none;
     clear: both;
+    float: none;
+    overflow: hidden;
     padding: 2px 8px;
 }
 
 #weather-widget-wrapper .weather-widget-top {
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
 }
 
 #weather-widget-wrapper .ww-temp {
     float: left;
     font-size: 56px;
     line-height: 70px;
-
-    /*font-weight: bold;*/
 }
 
 #weather-widget-wrapper .ww-cond-icon {
     float: left;
+    margin-left: 10px;
+}
+
+#weather-widget-wrapper .ww-cond-text {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: -4px;
+    text-align: center;
 }
 
 #weather-widget-wrapper .forecast {
     float: left;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 500;
     border-left: 1px solid #cccccc;
     width: 58px;
     padding: 0px;
