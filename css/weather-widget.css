@@ -5,7 +5,72 @@
     -webkit-box-shadow: 7px 7px 4px 2px #555555;
     -moz-box-shadow: 7px 7px 4px 2px #555555;
     box-shadow: 7px 7px 4px 2px #555555;
+    display: none;
+    font-family: Verdana, Arial, sans-serif;
     height: 160px;
+    position: relative;
     width: 310px;
+/* IE ? */
+}
 
+#weather-widget-wrapper .weather-widget-top,
+#weather-widget-wrapper .weather-widget-middle,
+#weather-widget-wrapper .weather-widget-bottom {
+    float: none;
+    clear: both;
+    padding: 2px 8px;
+}
+
+#weather-widget-wrapper .weather-widget-top {
+    font-size: 22px;
+}
+
+#weather-widget-wrapper .ww-temp {
+    float: left;
+    font-size: 56px;
+    line-height: 70px;
+
+    /*font-weight: bold;*/
+}
+
+#weather-widget-wrapper .ww-cond-icon {
+    float: left;
+}
+
+#weather-widget-wrapper .forecast {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    border-left: 1px solid #cccccc;
+    width: 58px;
+    padding: 0px;
+    text-align: center;
+    margin: auto;
+}
+
+#weather-widget-wrapper .forecast:first-child {
+    border-left: none;
+}
+
+
+
+#loader {
+    background:#fff;
+    opacity:.4;
+    position:absolute;
+    top:0;
+    left:0;
+    width:310px;
+    height:160px;
+    z-index:1000;
+    text-align:center;
+    display:none;
+}
+#loader img {
+    position:relative;
+    top:40px;
+    margin:auto;
+    vertical-align:middle;
+    width:80px;
+    height:80px;
 }

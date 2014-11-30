@@ -31,7 +31,7 @@ WeatherWidget.prototype.processApiCallResults = function(result) {
             if (result.query.results.channel.item) {
                 var html = this.createHtml(result.query.results.channel.item);
                 //var html = 'test';
-                $('#weather-widget-wrapper').append(html);
+                $('#weather-widget-wrapper').append(html).fadeIn();
             } else {
                 console.log('cannot update');
             }
@@ -53,19 +53,24 @@ WeatherWidget.prototype.createHtml = function(weatherInfo) {
 
     var htmlTop = '<div class="weather-widget-top">'+title+'</div>';
     var htmlMiddle =    '<div class="weather-widget-middle">'+
-                            '<div class="ww-temp">'+weatherInfo.condition.temp+'</div>'+
-                            '<div class="ww-cond-icon">'+img+'</div>'+
+                            '<div class="ww-temp">'+weatherInfo.condition.temp+'&deg;</div>'+
+                            '<div class="ww-cond-icon">'+
+                                img+
+                                '<div>'+weatherInfo.condition.text+'</div>'+
+                            '</div>'+
                         '</div>';
     var htmlBottom = '<div class="weather-widget-bottom">';
     $.each(weatherInfo.forecast, function(i, forecast) {
-        htmlBottom += '<div class="forecast"><div class="forecast-day">'+forecast.day+'</div><div class="forecast-temp">'+forecast.high+'/'+forecast.low+'</div></div>';
+        htmlBottom +=   '<div class="forecast">'+
+                            '<div class="forecast-day">'+forecast.day+'</div>'+
+                            '<div class="forecast-temp">'+forecast.high+'&deg;/'+forecast.low+'&deg;</div>'+
+                        '</div>';
     });
     htmlBottom += '</div>';
 
 
-    var html = htmlTop+htmlMiddle +htmlBottom;
+    return htmlTop+htmlMiddle +htmlBottom;
 
-    return html;
 }
 
 $( document ).ready(function() {
