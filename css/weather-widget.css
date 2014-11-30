@@ -1,0 +1,11 @@
+#weather-widget-wrapper {
+    background-color: #ffffff;
+    border: #555555 solid 1px;
+    border-radius: 10px;
+    -webkit-box-shadow: 7px 7px 4px 2px #555555;
+    -moz-box-shadow: 7px 7px 4px 2px #555555;
+    box-shadow: 7px 7px 4px 2px #555555;
+    height: 160px;
+    width: 310px;
+
+}
