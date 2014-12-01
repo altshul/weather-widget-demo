@@ -1,12 +1,25 @@
 function WeatherWidget(container, location) {
 
-    this.parentContainer = container;
+    this.container = container;
     this.location = location;
 
     this.apiUrl = 'http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20location%3D%22'+this.location+'%22&format=json';
+    this.el = $('#'+this.container);
+
+    this.erroMsg = 'Sorry, the weather conditions and the weather forecast are not available at this time';
+
+    this.loadWeather();
 }
 
 WeatherWidget.prototype.loadWeather = function() {
+
+    //just sanity check - if nowhere to display results, don't even call the api
+    if (!this.el) {
+        return;
+    }
+
+    //uncomment this to put loader in
+    //this.el.html('<div id="loader"><img src="img/loader.gif" width="80" height="80" alt="" /></div>');
 
     $.ajax({
         type: 'GET',
@@ -15,29 +28,37 @@ WeatherWidget.prototype.loadWeather = function() {
         contentType: 'text/plain',
         context: this,
         success: this.processApiCallResults,
-        error: function(error) {
-            //console.log(error);
-        }
+        error: this.displayErrorMsg,
+        global: false
     });
 }
 
 WeatherWidget.prototype.processApiCallResults = function(result) {
+    //$('#loader').fadeOut();
     if (result) {
         try {
             if (result.query.results.channel.item) {
                 var html = this.createHtml(result.query.results.channel.item);
-                //var html = 'test';
-                $('#weather-widget-wrapper').append(html).fadeIn();
+                //this.el.append(html).fadeIn(); //if still had the loader
+                this.el.html(html);
             } else {
-                //console.log('cannot update');
+                this.displayErrorMsg();
             }
         } catch (ex) {
-            //console.log(ex);
-            //console.log('catch - cannot update');
+            this.displayErrorMsg();
         }
     }
 }
 
+WeatherWidget.prototype.displayErrorMsg = function(error) {
+    //$('#loader').fadeOut();
+    //console.log(error); //normally would log error in dev env
+    this.el.html('<div class="weather-error">'+this.erroMsg+'</div>');
+
+}
+
+//in 'real' application I would normally have templates (handlebars, etc) and compile a template here
+//but that seemed like an overkill for this exercise
 WeatherWidget.prototype.createHtml = function(weatherInfo) {
     var labelStart = 'Condition for '.length;
     var title = weatherInfo.title.substr(labelStart);
@@ -70,17 +91,3 @@ WeatherWidget.prototype.createHtml = function(weatherInfo) {
 
 }
 
-$( document ).ready(function() {
-    var ww = new WeatherWidget('weather-widget-wrapper', '22102');     //22102 - McLean zip code
-    ww.loadWeather();
-});
-
-$(document).ajaxStart(function() {
-	$('#loader').show();
-});
-$(document).ajaxSuccess(function() {
-	$('#loader').fadeOut();
-});
-$(document).ajaxError(function() {
-    $('#loader').fadeOut();
-});

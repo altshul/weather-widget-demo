@@ -7,22 +7,25 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,900,700,500' rel='stylesheet' type='text/css'>
     <link href="css/weather-widget.css" media="screen, projection" rel="stylesheet" type="text/css">
     <title>Weather Widget demo page</title>
- </head>
+</head>
 <body id="page">
 
     <h1>Weather Widget Demo</h1>
 
 	<section id="main-content">
     	<div id="weather-widget-wrapper">
-            <div id="loader"><img src="img/spinner-image.gif" width="80" height="80" alt="" /></div>
 		</div>
 	</section>
 
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/XDomainRequest.min.js"></script>
 <script src="js/weather-widget.js"></script>
 
+<script type="application/javascript">
+    //this is an example of how to create weather widget on various pages
+    $( document ).ready(function() {
+        var ww = new WeatherWidget('weather-widget-wrapper', '22102');     //22102 - McLean, VA zip code
+    });
+</script>
 </body>
 </html>

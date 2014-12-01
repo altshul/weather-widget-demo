@@ -5,12 +5,12 @@
     -webkit-box-shadow: 7px 7px 4px 2px #555555;
     -moz-box-shadow: 7px 7px 4px 2px #555555;
     box-shadow: 7px 7px 4px 2px #555555;
-    display: none;
+    /*display: none;*/
     font-family: 'Roboto', arial, sans-serif;
     height: 160px;
+    margin: auto;
     position: relative;
     width: 310px;
-/* IE ? */
 }
 
 #weather-widget-wrapper .weather-widget-top,
@@ -61,7 +61,10 @@
     border-left: none;
 }
 
-
+#weather-widget-wrapper .weather-error {
+    padding: 20px;
+    font-size: 20px;
+}
 
 #loader {
     background:#fff;
